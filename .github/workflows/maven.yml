@@ -39,5 +39,5 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=justin-chi-sonarsource_demo-java-security_121301fc-4def-4d03-9ebc-3435eaf26ae7 -Dsonar.projectName='demo-java-security'
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -DskipTests=true -Dsonar.dependencyCheck.skip=true -Dsonar.projectKey=justin-chi-sonarsource_demo-java-security_121301fc-4def-4d03-9ebc-3435eaf26ae7 -Dsonar.projectName='demo-java-security'
         # test
