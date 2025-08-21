@@ -1,4 +1,4 @@
-# Demo - Java Security Develop Branch
+# Demo - Java Security Features Branch
 
 ## Use case
 This example demonstrates:
