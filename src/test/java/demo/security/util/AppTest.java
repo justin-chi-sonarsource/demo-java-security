@@ -1,4 +1,5 @@
-import demo.security.util.Utils;
+package demo.security.util;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;

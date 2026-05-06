@@ -28,7 +28,7 @@ public class UserServlet extends HttpServlet {
             });
             out.close();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new ServletException(e);
         }
 
     }
