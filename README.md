@@ -1,4 +1,4 @@
-# Demo - Java Security
+# Demo - Java Security Develop Branch
 
 ## Use case
 This example demonstrates:
@@ -24,3 +24,4 @@ At the bottom of the class you see a bunch of methods that demonstrate custom in
 - The method with custom sanitization (`doSomethingSanitized()`) has no vulnerability
 
 The custom security configuration file is in the root directory [here](s3649JavaSqlInjectionConfig.json)
+
