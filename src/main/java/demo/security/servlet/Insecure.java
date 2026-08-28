@@ -40,6 +40,7 @@ public class Insecure {
   }
   
   public String hotspotSQL(Connection connection, String user) throws Exception {
+	  // is input checked ?
 	  Statement statement = null;
 	  statement = connection.createStatement();
 	  ResultSet rs = statement.executeQuery("select userid from users WHERE username=" + user);
