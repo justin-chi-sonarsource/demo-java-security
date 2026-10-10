@@ -31,6 +31,7 @@ public class Utils {
 
     public static void deleteFile(String fileName) throws IOException {
         File file = new File(fileName);
+        System.out.println(fileName);
         FileUtils.forceDelete(file);
     }
 
