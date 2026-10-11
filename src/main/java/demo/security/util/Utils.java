@@ -30,8 +30,15 @@ public class Utils {
     }
 
     public static void deleteFile(String fileName) throws IOException {
-        File file = new File(fileName);
-        FileUtils.forceDelete(file);
+        if (fileName == null || fileName.trim().isEmpty()) {
+            throw new IOException("File name must not be null or blank");
+        }
+        File baseDir = new File(System.getProperty("java.io.tmpdir"), "security-demo-files").getCanonicalFile();
+        File target = new File(baseDir, fileName).getCanonicalFile();
+        if (!target.toPath().startsWith(baseDir.toPath())) {
+            throw new IOException("Path escapes allowed directory");
+        }
+        FileUtils.forceDelete(target);
     }
 
     public static void executeJs(String input) throws ScriptException {
