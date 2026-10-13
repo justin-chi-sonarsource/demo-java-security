@@ -22,7 +22,20 @@ public class InventoryReservationServlet extends HttpServlet {
       throws IOException {
 
     String sku = request.getParameter("sku");
-    int quantity = Integer.parseInt(request.getParameter("quantity"));
+    String quantityParameter = request.getParameter("quantity");
+    int quantity;
+
+    try {
+      quantity = Integer.parseInt(quantityParameter);
+    } catch (NumberFormatException e) {
+      sendBadRequest(response);
+      return;
+    }
+
+    if (quantity <= 0) {
+      sendBadRequest(response);
+      return;
+    }
 
     if (reserveInventory(sku, quantity)) {
       response.getWriter().println("Order accepted");
@@ -31,7 +44,20 @@ public class InventoryReservationServlet extends HttpServlet {
     }
   }
 
+  private void sendBadRequest(HttpServletResponse response) {
+    try {
+      response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Quantity must be a positive integer");
+    } catch (IOException e) {
+      // Unable to send the error response.
+    }
+  }
+
+
   private boolean reserveInventory(String sku, int quantity) {
+    if (quantity <= 0) {
+      return false;
+    }
+
     int available = inventory.getOrDefault(sku, 0);
 
     if (available < quantity) {
@@ -40,7 +66,8 @@ public class InventoryReservationServlet extends HttpServlet {
 
     // Unsafe check-then-act sequence: concurrent requests can both pass the
     // availability check and each reserve the same final item.
-    inventory.put(sku, available - quantity);
+    int remaining = available - quantity;
+    inventory.put(sku, remaining);
     return true;
   }
 }
