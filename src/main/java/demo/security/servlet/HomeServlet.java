@@ -27,7 +27,7 @@ public class HomeServlet extends HttpServlet {
     
     protected void writeResponse(HttpServletResponse response, String name) throws IOException {
         PrintWriter out = response.getWriter();
-        out.print("<h2>Hello "+name+ "</h2>");
+        out.print("<h2>Hello " + org.owasp.encoder.Encode.forHtml(name) + "</h2>");
         out.close();
     }
 
