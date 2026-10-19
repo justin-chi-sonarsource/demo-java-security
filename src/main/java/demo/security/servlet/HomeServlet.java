@@ -22,14 +22,17 @@ public class HomeServlet extends HttpServlet {
                          HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name").trim();
         response.setContentType("text/html");
+        writeResponse(response, name);
+    }
+    
+    protected void writeResponse(HttpServletResponse response, String name) throws IOException {
         PrintWriter out = response.getWriter();
-        out.print("<h2>Hello "+name+ "</h2>");
+        out.print("<h2>Hello " + org.owasp.encoder.Encode.forHtml(name) + "</h2>");
         out.close();
     }
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         doGet(request, response);
     }
 
